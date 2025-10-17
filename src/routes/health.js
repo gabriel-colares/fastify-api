@@ -1,5 +1,4 @@
-import type { FastifyPluginAsync } from 'fastify';
-import { Type, Static } from '@sinclair/typebox';
+const { Type } = require('@sinclair/typebox');
 
 const HealthResponse = Type.Object({
   status: Type.Literal('ok'),
@@ -7,10 +6,9 @@ const HealthResponse = Type.Object({
   timestamp: Type.String(),
 });
 
-type HealthResponse = Static<typeof HealthResponse>;
-
-const healthRoutes: FastifyPluginAsync = async (app) => {
-  app.get<{ Reply: HealthResponse }>(
+/** @type {import('fastify').FastifyPluginAsync} */
+const healthRoutes = async (app) => {
+  app.get(
     '/',
     {
       schema: {
@@ -29,4 +27,4 @@ const healthRoutes: FastifyPluginAsync = async (app) => {
   );
 };
 
-export default healthRoutes;
+module.exports = healthRoutes;
