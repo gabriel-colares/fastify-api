@@ -1,0 +1,42 @@
+# Arquivo de requisições para REST Client (VS Code)
+# Dica: instale a extensão "REST Client" para enviar as requisições deste arquivo.
+
+# Variáveis de ambiente
+@host = 127.0.0.1
+@port = 3000
+@baseUrl = http://{{host}}:{{port}}
+
+### Health Check
+# @name health
+GET {{baseUrl}}/api/health
+Accept: application/json
+
+### Exemplo GET com query (ajuste o caminho conforme suas rotas)
+# @name get_example
+GET {{baseUrl}}/api/example?search=foo&page=1
+Accept: application/json
+
+### Exemplo POST com JSON (ajuste o caminho conforme suas rotas)
+# @name post_example
+POST {{baseUrl}}/api/example
+Content-Type: application/json
+
+{
+  "name": "Exemplo",
+  "active": true
+}
+
+### Exemplo PUT (ajuste o caminho conforme suas rotas)
+# @name put_example
+PUT {{baseUrl}}/api/example/123
+Content-Type: application/json
+
+{
+  "name": "Exemplo Atualizado",
+  "active": false
+}
+
+### Exemplo DELETE (ajuste o caminho conforme suas rotas)
+# @name delete_example
+DELETE {{baseUrl}}/api/example/123
+Accept: application/json
